@@ -231,7 +231,9 @@ uint8_t matrix_scan(void)
                         state = E0_F0;
                         break;
                     default:
-                        if (code < 0x80) {
+			if (code == 0x71 || code == 0x72) {
+			    matrix_make(code + 0x70);
+			} else if (code < 0x80) {
                             matrix_make(code|0x80);
                         } else {
                             matrix_clear();
@@ -274,7 +276,9 @@ uint8_t matrix_scan(void)
                         state = INIT;
                         break;
                     default:
-                        if (code < 0x80) {
+			if (code == 0x71 || code == 0x72) {
+			    matrix_break(code + 0x70);
+                        } else if (code < 0x80) {
                             matrix_break(code|0x80);
                         } else {
                             matrix_clear();
