@@ -207,6 +207,11 @@ uint8_t matrix_scan(void)
                         led_set(host_keyboard_leds());
                         state = INIT;
                         break;
+		    case 0xF1:
+		    case 0xF2:
+			matrix_make(code);
+			state = INIT;
+			break;
                     default:    // normal key make
                         if (code < 0x80) {
                             matrix_make(code);
@@ -429,4 +434,18 @@ static void matrix_break(uint8_t code)
 void matrix_clear(void)
 {
     for (uint8_t i=0; i < MATRIX_ROWS; i++) matrix[i] = 0x00;
+}
+
+void hook_matrix_change(keyevent_t event) {
+    if (IS_NOEVENT(event))
+        return;
+
+    if (event.key.row == 30) {
+        xprintf("col:%d row:%d pressed:%d\n", event.key.col, event.key.row, event.pressed);
+        if (event.key.col == 1) {
+            matrix_break(0xF1);
+	} else if (event.key.col == 2) {
+            matrix_break(0xF2);
+	}
+    }
 }
