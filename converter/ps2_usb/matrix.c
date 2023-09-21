@@ -207,11 +207,11 @@ uint8_t matrix_scan(void)
                         led_set(host_keyboard_leds());
                         state = INIT;
                         break;
-		    case 0xF1:
-		    case 0xF2:
-			matrix_make(code);
-			state = INIT;
-			break;
+                    case 0xF1:
+                    case 0xF2:
+                        matrix_make(code);
+                        state = INIT;
+                        break;
                     default:    // normal key make
                         if (code < 0x80) {
                             matrix_make(code);
@@ -236,9 +236,9 @@ uint8_t matrix_scan(void)
                         state = E0_F0;
                         break;
                     default:
-			if (code == 0x71 || code == 0x72) {
-			    matrix_make(code + 0x70);
-			} else if (code < 0x80) {
+                        if (code == 0x71 || code == 0x72) {
+                            matrix_make(code + 0x70);
+                        } else if (code < 0x80) {
                             matrix_make(code|0x80);
                         } else {
                             matrix_clear();
@@ -264,14 +264,14 @@ uint8_t matrix_scan(void)
                         xprintf("unexpected scan code at F0: F0(clear and cont.)\n");
                         break;
                     default:
-                    if (code < 0x80) {
-                        matrix_break(code);
-                    } else {
-                        matrix_clear();
-                        clear_keyboard();
-                        xprintf("unexpected scan code at F0: %02X\n", code);
-                    }
-                    state = INIT;
+                        if (code < 0x80) {
+                            matrix_break(code);
+                        } else {
+                            matrix_clear();
+                            clear_keyboard();
+                            xprintf("unexpected scan code at F0: %02X\n", code);
+                        }
+                        state = INIT;
                 }
                 break;
             case E0_F0: // Break code of E0-prefixed
@@ -281,8 +281,8 @@ uint8_t matrix_scan(void)
                         state = INIT;
                         break;
                     default:
-			if (code == 0x71 || code == 0x72) {
-			    matrix_break(code + 0x70);
+                        if (code == 0x71 || code == 0x72) {
+                            matrix_break(code + 0x70);
                         } else if (code < 0x80) {
                             matrix_break(code|0x80);
                         } else {
