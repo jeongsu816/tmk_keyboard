@@ -16,9 +16,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "unimap_trans.h"
 
-
-#define AC_FN0 ACTION_LAYER_MOMENTARY(1)
-
 #ifdef KEYMAP_SECTION_ENABLE
 const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] __attribute__ ((section (".keymap.keymaps"))) = {
 #else
@@ -31,15 +28,6 @@ const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] PROGMEM = {
     TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,     BSLS,     DEL, END, PGDN,    P7,  P8,  P9,  PPLS,
     CAPS,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,          ENT,                         P4,  P5,  P6,  PCMM,
     LSFT,NUBS,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,     RO,  RSFT,          UP,           P1,  P2,  P3,  PENT,
-    LCTL,LGUI,LALT,LANG2,         SPC,          LANG1,KANA,RALT,RGUI,FN0, RCTL,     LEFT,DOWN,RGHT,    NUHS,P0,  PDOT,PEQL
-    ),
-    UNIMAP(
-              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    GRV,      TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS,TRNS,TRNS,         TRNS,TRNS,TRNS,
-    ESC, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, INS, DEL,      TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
-    CAPS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,PSCR,SLCK,PAUS,UP,  INS,      TRNS,     TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
-    TRNS,VOLD,VOLU,MUTE,TRNS,TRNS,TRNS,TRNS,HOME,PGUP,LEFT,RGHT,          TRNS,                        TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,END, PGDN,DOWN,     TRNS,TRNS,          PGUP,         TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,          TRNS,          TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     HOME,PGDN,END,     TRNS,TRNS,TRNS,TRNS
+    LCTL,LGUI,LALT,LANG2,         SPC,          LANG1,KANA,RALT,RGUI,APP, RCTL,     LEFT,DOWN,RGHT,    NUHS,P0,  PDOT,PEQL
     ),
 };
