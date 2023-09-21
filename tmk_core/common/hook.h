@@ -93,6 +93,10 @@ void hook_bootmagic(void);
 /* returns true if the event is consumed and default action is not needed. */
 bool hook_process_action(keyrecord_t *record);
 
+/* Called on before jumping bootloader */
+/* returns true if the bootloader jump was done by hook and default bootloader jump is not needed. */
+bool hook_bootloader_jump(void);
+
 #ifdef __cplusplus
 }
 #endif

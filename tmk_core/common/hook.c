@@ -55,3 +55,8 @@ __attribute__((weak))
 bool hook_process_action(keyrecord_t *record) {
     return false;
 }
+
+__attribute__((weak))
+bool hook_bootloader_jump(void) {
+    return false;
+}

@@ -6,6 +6,7 @@
 #include <avr/boot.h>
 #include <util/delay.h>
 #include "bootloader.h"
+#include "hook.h"
 
 #ifdef PROTOCOL_LUFA
 #include <LUFA/Drivers/USB/USB.h>
@@ -89,6 +90,10 @@ uint32_t reset_key  __attribute__ ((section (".noinit")));
 
 /* initialize MCU status by watchdog reset */
 void bootloader_jump(void) {
+    if(hook_bootloader_jump()) {
+        return;
+    }
+
 #ifdef PROTOCOL_LUFA
     USB_Disable();
     cli();
