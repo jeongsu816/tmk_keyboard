@@ -9,7 +9,8 @@ TARGET_DIR ?= .
 
 # project specific files
 SRC ?=	matrix.c \
-	led.c
+	led.c \
+	hook.c
 
 #
 # Keymap file
