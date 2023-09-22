@@ -444,8 +444,8 @@ void hook_matrix_change(keyevent_t event) {
 //        xprintf("col:%d row:%d pressed:%d\n", event.key.col, event.key.row, event.pressed);
         if (event.key.col == 1) {
             matrix_break(0xF1);
-	} else if (event.key.col == 2) {
+        } else if (event.key.col == 2) {
             matrix_break(0xF2);
-	}
+        }
     }
 }
