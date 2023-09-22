@@ -173,7 +173,7 @@ uint8_t matrix_scan(void)
     }
 
     uint8_t code = ps2_host_recv();
-    if (code) xprintf("%i\r\n", code);
+    if (code && debug_keycode) dprintf("%02X", code);
     if (!ps2_error) {
         switch (state) {
             case INIT:
