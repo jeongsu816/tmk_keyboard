@@ -120,7 +120,7 @@ static void command_common_help(void)
           "x:	debug matrix\n"
           "k,i:	debug keyboard\n"
           "m:	debug mouse\n"
-          "p:	debug keycode\n"
+          "o:	debug keycode\n"
           "v:	version\n"
           "s,w:	status\n"
           "c:	console mode\n"
