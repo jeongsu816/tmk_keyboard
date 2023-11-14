@@ -962,6 +962,15 @@ uint8_t IBMPCConverter::cs2_e0code(uint8_t code) {
     }
 }
 
+uint8_t IBMPCConverter::cs2_han_code(uint8_t code) {
+    switch (code) {
+        case 0xF1: return 0x67;
+        case 0xF2: return 0x64;
+
+        default: return code;
+    }
+}
+
 #ifdef CS2_80CODE_SUPPORT
 // 80-prefixed codes
 uint8_t IBMPCConverter::cs2_80code(uint8_t code) {
@@ -1035,6 +1044,11 @@ int8_t IBMPCConverter::process_cs2(uint8_t code)
                     state_cs2 = CS2_80;
                     break;
 #endif
+                case 0xF1:
+                case 0xF2:
+                    matrix_make(cs2_han_code(code));
+                    state_cs2 = CS2_INIT;
+                    break;
                 case 0x83:  // F7
                     matrix_make(0x02);
                     state_cs2 = CS2_INIT;
@@ -1408,6 +1422,29 @@ int8_t IBMPCConverter::process_cs3(uint8_t code)
 #endif
     }
     return 0;
+}
+
+void IBMPCConverter::hook_matrix_change(keyevent_t event) {
+    if (IS_NOEVENT(event))
+        return;
+
+    if (keyboard_kind != PC_AT)
+        return;
+
+    // xprintf("row:%d col:%d pressed:%d\n", event.key.row, event.key.col, event.pressed);
+
+    if (!event.pressed)
+        return;
+
+    if (event.key.row == 7 && event.key.col == 6) {
+        matrix_break(0x64);
+    } else if (event.key.row == 7 && event.key.col == 7) {
+        matrix_break(0x67);
+    }
+}
+
+void hook_matrix_change(keyevent_t event) {
+    converter0.hook_matrix_change(event);
 }
 
 /*
