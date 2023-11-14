@@ -11,7 +11,8 @@ TARGET_DIR ?= .
 #SRC ?=	protocol/ibmpc.c \
 #	ibmpc_usb.c
 SRC ?=	protocol/ibmpc.cpp \
-	ibmpc_usb.cpp
+	ibmpc_usb.cpp \
+	hook.c
 
 CONFIG_H ?= config.h
 
@@ -71,7 +72,7 @@ OPT_DEFS += -DSUSPEND_MODE_STANDBY
 #   comment out to disable the options.
 #
 BOOTMAGIC_ENABLE ?= no	# Virtual DIP switch configuration(+1150)
-MOUSEKEY_ENABLE ?= yes	# Mouse keys(+2200)
+#MOUSEKEY_ENABLE ?= yes	# Mouse keys(+2200)
 EXTRAKEY_ENABLE ?= yes	# Audio control and System control(+400)
 CONSOLE_ENABLE ?= yes	# Console for debug(+4150)
 COMMAND_ENABLE ?= yes	# Commands for debug and configuration(+3600)
@@ -81,8 +82,8 @@ KEYMAP_SECTION_ENABLE ?= yes
 UNIMAP_ENABLE ?= yes
 
 # IBMPC Options
-IBMPC_SECONDARY ?= yes		# enable secondary interface(+800)
-IBMPC_MOUSE_ENABLE ?= yes	# enable mouse support(+2000)
+#IBMPC_SECONDARY ?= yes		# enable secondary interface(+800)
+#IBMPC_MOUSE_ENABLE ?= yes	# enable mouse support(+2000)
 
 
 # Size optimization
