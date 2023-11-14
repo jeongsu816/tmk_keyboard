@@ -31,6 +31,7 @@ typedef enum { NONE, PC_XT, PC_AT, PC_TERMINAL, PC_MOUSE } keyboard_kind_t;
 extern "C" uint8_t ibmpc_mouse_buttons(void);
 #endif
 
+extern "C" void hook_matrix_change(keyevent_t event);
 
 class IBMPCConverter {
     public:
@@ -127,6 +128,7 @@ class IBMPCConverter {
     int8_t process_cs3(uint8_t code);
     uint8_t cs1_e0code(uint8_t code);
     uint8_t cs2_e0code(uint8_t code);
+    uint8_t cs2_han_code(uint8_t code);
 #ifdef CS2_80CODE_SUPPORT
     uint8_t cs2_80code(uint8_t code);
 #endif
@@ -185,7 +187,11 @@ class IBMPCConverter {
         xprintf("S[%02X %02X %02X] ", s[0], s[1], s[2]);
     }
 #endif
+
+    public:
+    void hook_matrix_change(keyevent_t event);
 };
+
 
 matrix_row_t IBMPCConverter::matrix[MATRIX_ROWS];
 
