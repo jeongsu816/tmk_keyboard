@@ -11,7 +11,6 @@ debug_config_t debug_config = {
     .matrix = false,
     .keyboard = false,
     .mouse = false,
-    .keycode = false,
     .reserved = 0
 #else
     {

@@ -120,7 +120,6 @@ static void command_common_help(void)
           "x:	debug matrix\n"
           "k,i:	debug keyboard\n"
           "m:	debug mouse\n"
-          "o:	debug keycode\n"
           "v:	version\n"
           "s,w:	status\n"
           "c:	console mode\n"
@@ -230,7 +229,6 @@ static bool command_common(uint8_t code)
             debug_keyboard = false;
             debug_mouse    = false;
             debug_enable   = false;
-            debug_keycode  = false;
             command_console_help();
             print("C> ");
             command_state = CONSOLE;
@@ -249,7 +247,6 @@ static bool command_common(uint8_t code)
                 debug_keyboard = false;
                 debug_mouse    = false;
                 debug_enable   = false;
-                debug_keycode  = false;
             } else {
                 print("\ndebug: on\n");
                 debug_enable   = true;
@@ -281,15 +278,6 @@ static bool command_common(uint8_t code)
                 debug_enable = true;
             } else {
                 print("\nmouse: off\n");
-            }
-            break;
-        case KC_O: // debug keycode toggle
-            debug_keycode = !debug_keycode;
-            if (debug_keycode) {
-                print("\ndebug keycode: on\n");
-                debug_enable = true;
-            } else {
-                print("\ndebug keycode: off\n");
             }
             break;
         case KC_V: // print version & information
