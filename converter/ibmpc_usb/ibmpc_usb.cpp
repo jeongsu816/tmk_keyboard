@@ -48,7 +48,7 @@ void hook_early_init(void)
 
 void matrix_init(void)
 {
-    debug_enable = true;
+    debug_enable = false;
 
     matrix_clear();
 }
