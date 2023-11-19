@@ -116,12 +116,12 @@ bool command_console_extra(uint8_t code)
 static void command_common_help(void)
 {
     print("\n\t- Magic -\n"
-          "d:	debug\n"
+          "d,e:	debug\n"
           "x:	debug matrix\n"
-          "k:	debug keyboard\n"
+          "k,i:	debug keyboard\n"
           "m:	debug mouse\n"
           "v:	version\n"
-          "s:	status\n"
+          "s,w:	status\n"
           "c:	console mode\n"
           "0-4:	layer0-4(F10-F4)\n"
           "Paus:	bootloader\n"
@@ -240,6 +240,7 @@ static bool command_common(uint8_t code)
             bootloader_jump(); // not return
             break;
         case KC_D:
+        case KC_E: // for LKB-0107. It can't detect LShift + RShift + D
             if (debug_enable) {
                 print("\ndebug: off\n");
                 debug_matrix   = false;
@@ -261,6 +262,7 @@ static bool command_common(uint8_t code)
             }
             break;
         case KC_K: // debug keyboard toggle
+        case KC_I: // for LKB-0107. It can't detect LShift + RShift + K
             debug_keyboard = !debug_keyboard;
             if (debug_keyboard) {
                 print("\nkeyboard: on\n");
@@ -332,6 +334,7 @@ static bool command_common(uint8_t code)
 #endif
             break;
         case KC_S:
+        case KC_W: // for LKB-0107. It can't detect LShift + RShift + S
             print("\n\t- Status -\n");
             print_val_hex8(host_keyboard_leds());
             print_val_hex8(keyboard_protocol);
